@@ -2,11 +2,11 @@ import './App.css';
 import dataUtil from "./util/data";
 import compUtil from "./util/component"
 import { useState } from 'react';
-import { Container, Nav, Navbar, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function App() {
 
-  const [ product, setProduct ] = useState( dataUtil.productData );
+  const [ product, setProduct ] = useState( dataUtil.getProductData() );
 
   /* 내 현재 절대경로 : {process.env.PUBLIC_URL} => 이미지 경로 설정할때 사용 */
   return (
@@ -27,7 +27,7 @@ const Card = ( props ) => {
   const index = props.ProductIndex;
   return (
     <Col>
-      <img src={ `https://codingapple1.github.io/shop/shoes${ String( index + 1 ) }.jpg` } width="80%"/>
+      <img src={ `https://codingapple1.github.io/shop/shoes${ String( index + 1 ) }.jpg` } width="80%" alt=''/>
       <h4>{ value.title }</h4>
       <p>{ value.content }</p>
       <p>{ value.price }</p>
