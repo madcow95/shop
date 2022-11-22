@@ -22,12 +22,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={ compUtil.getMainPage( product, navigate ) } />
         <Route path="/detail" element={ compUtil.getProductDetail( navigate ) } />
-
-        <Route path="/event" element={ <Event/> }>
-          <Route path='one' element={ <p>첫 주문시 양배추즘 서비스</p> }/>
-          <Route path='two' element={ <p>생일 쿠폰 받기</p> }/>
-        </Route>
-
         {
         /* 
         Nested Route
@@ -45,14 +39,4 @@ const App = () => {
     </div>
   );
 }
-
-const Event = () => {
-  return (
-    <>
-      <h1>오늘의 이벤트</h1>
-      <Outlet></Outlet>
-    </>
-  )
-}
-
 export default App;
