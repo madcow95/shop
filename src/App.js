@@ -21,9 +21,7 @@ const App = () => {
 
       <button onClick={ () => {
         const copiedProduct = [ ...product ];
-        copiedProduct.sort( ( a, b ) => {
-          return a.title.localeCompare( b.title );
-        } );
+        copiedProduct.sort( ( a, b ) => { return a.title.localeCompare( b.title ) } );
         setProduct( copiedProduct );
       } }>Sort!</button>
     </div>
