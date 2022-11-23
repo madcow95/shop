@@ -1,5 +1,5 @@
 import { Container, Nav, Navbar, Row, Col } from 'react-bootstrap';
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const getHeader = ( navigate ) => {
     return (
@@ -31,8 +31,8 @@ const CardList = ( props ) => {
     const index = props.ProductIndex;
     const navigate = props.Navigate;
     return (
-      <Col onClick={ () => { navigate( '/detail' ) } }>
-        <img src={ `https://codingapple1.github.io/shop/shoes${ String( index + 1 ) }.jpg` } width="80%" alt=''/>
+      <Col onClick={ () => { navigate( `/detail/${ index }` ) } }>
+        <img src={ `https://codingapple1.github.io/shop/shoes${ parseInt( value.id ) + 1 }.jpg` } width="80%" alt=''/>
         <h4>{ value.title }</h4>
         <p>{ value.content }</p>
         <p>{ value.price }</p>
@@ -40,17 +40,19 @@ const CardList = ( props ) => {
     )
 }
 
-export const getProductDetail = ( navigate ) => {
+export const GetProductDetail = ( props ) => {
+    const prodIndex = useParams().id;
+    const targetProduct = props.ProductState[ prodIndex ];
     return (
         <div className="container">
             <div className="row">
                 <div className="col-md-6">
-                <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
+                <img src={`https://codingapple1.github.io/shop/shoes${ parseInt( targetProduct.id ) + 1 }.jpg`} width="100%" />
                 </div>
                 <div className="col-md-6">
-                <h4 className="pt-5">상품명</h4>
-                <p>상품설명</p>
-                <p>120000원</p>
+                <h4 className="pt-5">{ targetProduct.title }</h4>
+                <p>{ targetProduct.content }</p>
+                <p>{ targetProduct.price }</p>
                 <button className="btn btn-danger">주문하기</button> 
                 </div>
             </div>
@@ -61,5 +63,5 @@ export const getProductDetail = ( navigate ) => {
 export default {
     getHeader,
     getMainPage,
-    getProductDetail
+    GetProductDetail
 }

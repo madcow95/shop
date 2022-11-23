@@ -1,0 +1,14 @@
+Nested Route
+여러 유사한 페이지 필요할 때 이용하면 좋음ㄹ
+/about/location으로 들어왔을 때 이런식으로도 작성 가능
+대신 About component의 return안에 <Outlet></Outlet>으로 표현 가능 
+예시
+<Route path="/about" element={<About/>}>
+    <Route path="/location" element={<Location/>}/>
+</Route>
+
+use로 시작하는 애들은 유용한 애들이 들어있는 함수 => Hook이라고 함
+useNavigate ==> 페이지 이동을 도와주는 아이
+const navigate = useNavigate();
+
+npm install react-router-dom@6 설치
