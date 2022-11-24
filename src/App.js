@@ -15,7 +15,7 @@ const App = () => {
       <div className='main-bg'></div>
       <Routes>
         <Route path="/" element={ compUtil.getMainPage( product, navigate ) } />
-        <Route path="/detail/:id" element={ <compUtil.GetProductDetail ProductState={ product } /> } />
+        <Route path="/detail/:id" element={ <compUtil.GetProductDetail ProductState={ product } MainState={ useState } /> } />
         <Route path="/*" element={ <div>잘못 들어오신거 같은데요?</div> } />
       </Routes>
 

@@ -12,3 +12,46 @@ useNavigate ==> 페이지 이동을 도와주는 아이
 const navigate = useNavigate();
 
 npm install react-router-dom@6 설치
+
+npm install styled-components
+
+style을 주고싶을 때
+1. import styled from "styled-components
+장점 : 스타일이 다른 js파일로 오염되지 않음, 페이지 로딩시간이 단축
+단점 : js파일이 매우 복잡해짐, import, export가능한데 그러면 css쓰지 왜 이걸? 하는 이슈
+ex) 
+let YellowBtn = styled.button`
+    background : yellow;
+    color : black;
+    padding : 10px;
+`
+다른 색 버튼이 필요할 때
+let YellowBtn = styled.button`
+    background : ${ props => props.bg };
+    color : black;
+    padding : 10px;
+`
+
+기존 스타일도 복사가능
+let newBtn = styled.button( YellowBtn )`
+    
+`
+
+ex2)
+let BlackBox = styled.div`
+    background : grey;
+    padding : 20px
+`
+
+const App = () => {
+    처럼 사용할 수 있음
+    return(
+        <YellowBtn bg="blue/>
+    )
+}
+
+LifeCycleHook
+컴포넌트의 Lifecycle
+1. mount 장착
+2. update 업데이트
+3. unmount 제거
