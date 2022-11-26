@@ -81,8 +81,6 @@ export const GetProductDetail = ( props ) => {
                     <button className="btn btn-danger">주문하기</button> 
                 </div>
                 <input type={"text"} onChange={ ( e ) => { e.target.value && setStringCheck( e.target.value ) } } />
-                {/* { !stringCheck && alert( "그러지 마세요." ) } */}
-                {/* setStringCheck( /^[0-9]+$/.test( this.value ) ) */}
             </div>
         </div>
     )
