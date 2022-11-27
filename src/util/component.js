@@ -49,9 +49,9 @@ export const GetProductDetail = ( props ) => {
     // LifeCycle Hook
     useEffect( () => {
         const timeOut = setTimeout( () => { setDisplay( false ) }, 2000 );
-        if( !/^[0-9]+$/.test( stringCheck ) ) {
-            alert("그러지 마세요.");
-        }
+        // if( !/^[0-9]+$/.test( stringCheck ) ) {
+        //     alert("그러지 마세요.");
+        // }
         return() => {
             clearTimeout( timeOut );
         }
@@ -70,14 +70,32 @@ export const GetProductDetail = ( props ) => {
                     <p>{ targetProduct.price }</p>
                     <button className="btn btn-danger">주문하기</button> 
                 </div>
-                <input type={"text"} onChange={ ( e ) => { e.target.value && setStringCheck( e.target.value ) } } />
+                {/* <input type={"text"} onChange={ ( e ) => { e.target.value && setStringCheck( e.target.value ) } } /> */}
             </div>
         </div>
+    )
+}
+
+export const GetLoginPage = () => {
+    return(
+        <>
+            <h1>로그인페이지 입니다.</h1>
+        </>
+    )
+}
+
+export const GetJoinPage = () => {
+    return (
+        <>
+            <h1>회원가입 페이지 입니다.</h1>
+        </>
     )
 }
 
 export default {
     getHeader,
     getMainPage,
-    GetProductDetail
+    GetProductDetail,
+    GetLoginPage,
+    GetJoinPage
 }
