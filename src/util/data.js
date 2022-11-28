@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const getProductData = () => {
     const productData = [
         {
@@ -24,6 +26,14 @@ export const getProductData = () => {
     return productData;
 }
 
+export const getMoreData = async () => {
+  const moreData = await axios.get( "https://codingapple1.github.io/shop/data2.json" ).catch( () => {
+    alert( "서버와 통신에 실패함\n잠시 후 다시 시도해주셈" );
+  } );
+  return moreData.data;
+}
+
 export default { 
-    getProductData 
+    getProductData,
+    getMoreData
 };

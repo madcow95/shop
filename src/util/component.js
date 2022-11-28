@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Container, Nav, Navbar, Row, Col } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
+import dataUtil from "./data";
 
 export const getHeader = ( navigate ) => {
     return (
@@ -17,12 +18,20 @@ export const getHeader = ( navigate ) => {
     )
 }
 
-export const getMainPage = ( product, navigate ) => {
+export const getMainPage = ( props ) => {
+    const [ prodData, setProdData ] = props.MainState( props.ProductState );
+    
     return (
       <Container>
         <Row>
-          { product.map( ( p, idx ) => <CardList ProductState={ p } ProductIndex={ idx } Navigate={ navigate } key={ idx }/> ) }
+          { prodData.map( ( p, idx ) => <CardList ProductState={ p } ProductIndex={ idx } Navigate={ props.NavigateState } key={ idx }/> ) }
         </Row>
+        <button onClick={ () => {
+            dataUtil.getMoreData().then( res => {
+                const copiedProduct = [ ...props.ProductState ].concat( res );
+                setProdData( copiedProduct );
+            } );
+        } }>더 보기</button>
       </Container>
     )
 }
@@ -44,22 +53,17 @@ const CardList = ( props ) => {
 export const GetProductDetail = ( props ) => {
     const prodIndex = useParams().id;
     const targetProduct = props.ProductState[ prodIndex ];
-    const [ display, setDisplay ] = props.MainState( true );
-    const [ stringCheck, setStringCheck ] = props.MainState( "" );
-    // LifeCycle Hook
-    useEffect( () => {
-        const timeOut = setTimeout( () => { setDisplay( false ) }, 2000 );
-        // if( !/^[0-9]+$/.test( stringCheck ) ) {
-        //     alert("그러지 마세요.");
-        // }
-        return() => {
-            clearTimeout( timeOut );
-        }
-    }, [ stringCheck ] );
+    // const [ display, setDisplay ] = props.MainState( true );
+    // useEffect( () => {
+    //     const timeOut = setTimeout( () => { setDisplay( false ) }, 2000 );
+    //     return() => {
+    //         clearTimeout( timeOut );
+    //     }
+    // }, [] );
 
     return (
         <div className="container">
-            { display && <div className='alert alert-warning' id='hideDiv'>2초이내 구매시 할인</div> }
+            {/* { display && <div className='alert alert-warning' id='hideDiv'>2초이내 구매시 할인</div> } */}
             <div className="row">
                 <div className="col-md-6">
                     <img src={`https://codingapple1.github.io/shop/shoes${ parseInt( targetProduct.id ) + 1 }.jpg`} width="100%" alt='...'/>
@@ -76,19 +80,44 @@ export const GetProductDetail = ( props ) => {
     )
 }
 
-export const GetLoginPage = () => {
+export const GetLoginPage = ( props ) => {
+    // const [ passwordLengthCheck, setPasswordLengthCheck ] = props.MainState( false );
     return(
         <>
-            <h1>로그인페이지 입니다.</h1>
+            <CustomIDInput />
+            <CustomPwdInput />
+            <CustomButton/>
         </>
     )
 }
 
-export const GetJoinPage = () => {
+export const GetJoinPage = ( props ) => {
+    // const [ passwordLengthCheck, setPasswordLengthCheck ] = props.MainState( false );
     return (
         <>
             <h1>회원가입 페이지 입니다.</h1>
+            <CustomIDInput />
+            <CustomPwdInput />
+            {/* { !passwordLengthCheck && <p>비밀번호는 6글자 이상 입력해주세요</p> } */}
         </>
+    )
+}
+
+const CustomButton = () => {
+    return (
+        <button>버튼!</button>
+    )
+}
+
+const CustomIDInput = () => {
+    return (
+        <>아이디 : <input type="text"/></>
+    )
+}
+
+const CustomPwdInput = () => {
+    return (
+        <>비밀번호 : <input type="password"/></>
     )
 }
 
