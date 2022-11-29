@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
 import { Container, Nav, Navbar, Row, Col } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
+import { useState } from 'react';
 import dataUtil from "./data";
 
-export const getHeader = ( navigate ) => {
+let CopiedProducts = dataUtil.getProductData();
+
+export const GetHeader = ( props ) => {
+    const navigate = props.NavigateState;
     return (
         <Navbar bg="dark" variant="dark">
             <Container>
@@ -18,9 +22,9 @@ export const getHeader = ( navigate ) => {
     )
 }
 
-export const getMainPage = ( props ) => {
-    const [ prodData, setProdData ] = props.MainState( props.ProductState );
-    
+export const GetMainPage = ( props ) => {
+    // const [ prodData, setProdData ] = props.MainState( props.ProductState );
+    const [ prodData, setProdData ] = useState( CopiedProducts );
     return (
       <Container>
         <Row>
@@ -28,8 +32,8 @@ export const getMainPage = ( props ) => {
         </Row>
         <button onClick={ () => {
             dataUtil.getMoreData().then( res => {
-                const copiedProduct = [ ...props.ProductState ].concat( res );
-                setProdData( copiedProduct );
+                CopiedProducts = [ ...prodData ].concat( res );
+                setProdData( CopiedProducts );
             } );
         } }>더 보기</button>
       </Container>
@@ -51,8 +55,9 @@ const CardList = ( props ) => {
 }
 
 export const GetProductDetail = ( props ) => {
+    const [ prodData ] = useState( CopiedProducts );
     const prodIndex = useParams().id;
-    const targetProduct = props.ProductState[ prodIndex ];
+    const targetProduct = prodData[ prodIndex ];
     // const [ display, setDisplay ] = props.MainState( true );
     // useEffect( () => {
     //     const timeOut = setTimeout( () => { setDisplay( false ) }, 2000 );
@@ -122,8 +127,8 @@ const CustomPwdInput = () => {
 }
 
 export default {
-    getHeader,
-    getMainPage,
+    GetHeader,
+    GetMainPage,
     GetProductDetail,
     GetLoginPage,
     GetJoinPage
