@@ -26,17 +26,20 @@ export const GetHeader = ( props ) => {
 export const GetMainPage = ( props ) => {
     const [ prodData, setProdData ] = useState( CopiedProducts );
     return (
-      <Container>
-        <Row>
-          { prodData.map( ( p, idx ) => <CardList ProductState={ p } ProductIndex={ idx } Navigate={ props.NavigateState } key={ idx }/> ) }
-        </Row>
-        <button onClick={ () => {
-            dataUtil.getMoreData().then( res => {
-                CopiedProducts = [ ...prodData ].concat( res );
-                setProdData( CopiedProducts );
-            } );
-        } }>더 보기</button>
-      </Container>
+        <>
+            <div className='main-bg'></div>
+            <Container>
+                <Row>
+                { prodData.map( ( p, idx ) => <CardList ProductState={ p } ProductIndex={ idx } Navigate={ props.NavigateState } key={ idx }/> ) }
+                </Row>
+                <button onClick={ () => {
+                    dataUtil.getMoreData().then( res => {
+                        CopiedProducts = [ ...prodData ].concat( res );
+                        setProdData( CopiedProducts );
+                    } );
+                } }>더 보기</button>
+            </Container>
+        </>
     )
 }
 
@@ -85,7 +88,7 @@ export const GetProductDetail = () => {
     )
 }
 
-export const GetLoginPage = ( props ) => {
+export const GetLoginPage = () => {
     /* 
         primary, secondary, success, warning, danger, info, light, dark
     */

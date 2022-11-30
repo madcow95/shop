@@ -9,7 +9,7 @@ const App = () => {
   return (
     <div className="App">
       <compUtil.GetHeader NavigateState={ navigate }/>
-      <div className='main-bg'></div>
+      
       <Routes>
         <Route path="/" element={ <compUtil.GetMainPage NavigateState={ navigate } /> } />
         <Route path="/detail/:id" element={ <compUtil.GetProductDetail /> } />
