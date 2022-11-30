@@ -3,6 +3,7 @@ import { Container, Nav, Navbar, Row, Col } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import { useState } from 'react';
 import dataUtil from "./data";
+import normalComp from "./normalComponent";
 
 let CopiedProducts = dataUtil.getProductData();
 
@@ -23,7 +24,6 @@ export const GetHeader = ( props ) => {
 }
 
 export const GetMainPage = ( props ) => {
-    // const [ prodData, setProdData ] = props.MainState( props.ProductState );
     const [ prodData, setProdData ] = useState( CopiedProducts );
     return (
       <Container>
@@ -54,7 +54,7 @@ const CardList = ( props ) => {
     )
 }
 
-export const GetProductDetail = ( props ) => {
+export const GetProductDetail = () => {
     const [ prodData ] = useState( CopiedProducts );
     const prodIndex = useParams().id;
     const targetProduct = prodData[ prodIndex ];
@@ -86,12 +86,12 @@ export const GetProductDetail = ( props ) => {
 }
 
 export const GetLoginPage = ( props ) => {
-    // const [ passwordLengthCheck, setPasswordLengthCheck ] = props.MainState( false );
+    /* 
+        primary, secondary, success, warning, danger, info, light, dark
+    */
     return(
         <>
-            <CustomIDInput />
-            <CustomPwdInput />
-            <CustomButton/>
+            <normalComp.GetButton ButtonProp={ "dark" } ButtonName={ "로그인" }/>
         </>
     )
 }
@@ -101,30 +101,11 @@ export const GetJoinPage = ( props ) => {
     return (
         <>
             <h1>회원가입 페이지 입니다.</h1>
-            <CustomIDInput />
-            <CustomPwdInput />
             {/* { !passwordLengthCheck && <p>비밀번호는 6글자 이상 입력해주세요</p> } */}
         </>
     )
 }
 
-const CustomButton = () => {
-    return (
-        <button>버튼!</button>
-    )
-}
-
-const CustomIDInput = () => {
-    return (
-        <>아이디 : <input type="text"/></>
-    )
-}
-
-const CustomPwdInput = () => {
-    return (
-        <>비밀번호 : <input type="password"/></>
-    )
-}
 
 export default {
     GetHeader,
