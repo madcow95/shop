@@ -59,19 +59,19 @@ const CardList = ( props ) => {
 
 export const GetProductDetail = () => {
     const [ prodData ] = useState( CopiedProducts );
+    const [ display, setDisplay ] = useState( true );
     const prodIndex = useParams().id;
     const targetProduct = prodData[ prodIndex ];
-    // const [ display, setDisplay ] = props.MainState( true );
-    // useEffect( () => {
-    //     const timeOut = setTimeout( () => { setDisplay( false ) }, 2000 );
-    //     return() => {
-    //         clearTimeout( timeOut );
-    //     }
-    // }, [] );
+    useEffect( () => {
+        const timeOut = setTimeout( () => { setDisplay( false ) }, 15000 );
+        return() => {
+            clearTimeout( timeOut );
+        }
+    }, [] );
 
     return (
         <div className="container">
-            {/* { display && <div className='alert alert-warning' id='hideDiv'>2초이내 구매시 할인</div> } */}
+            { display && <div className='alert alert-warning' id='hideDiv'>15초이내 구매시 할인</div> }
             <div className="row">
                 <div className="col-md-6">
                     <img src={`https://codingapple1.github.io/shop/shoes${ parseInt( targetProduct.id ) + 1 }.jpg`} width="100%" alt='...'/>
@@ -94,6 +94,7 @@ export const GetLoginPage = () => {
     */
     return(
         <>
+            <normalComp.GetForm/>
             <normalComp.GetButton ButtonProp={ "dark" } ButtonName={ "로그인" }/>
         </>
     )
@@ -103,6 +104,7 @@ export const GetJoinPage = ( props ) => {
     // const [ passwordLengthCheck, setPasswordLengthCheck ] = props.MainState( false );
     return (
         <>
+            <normalComp.GetForm/>
             <h1>회원가입 페이지 입니다.</h1>
             {/* { !passwordLengthCheck && <p>비밀번호는 6글자 이상 입력해주세요</p> } */}
         </>
