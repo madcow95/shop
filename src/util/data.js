@@ -26,11 +26,11 @@ export const getProductData = () => {
     return productData;
 }
 
-export const getMoreData = async () => {
-  const moreData = await axios.get( "https://codingapple1.github.io/shop/data2.json" ).catch( () => {
-    alert( "서버와 통신에 실패함\n잠시 후 다시 시도해주셈" );
+export const getMoreData = async ( dataNo ) => {
+  const res = await axios.get( `https://codingapple1.github.io/shop/data${ dataNo }.json` ).catch( () => {
+    alert( "더 이상 상품이 없어요" );
   } );
-  return moreData.data;
+  return res ? res.data : false;
 }
 
 export default { 

@@ -1,4 +1,4 @@
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Spinner } from 'react-bootstrap';
 
 export const GetButton = ( props ) => {
     const BtnProp = props.ButtonProp;
@@ -34,7 +34,16 @@ export const GetForm = ( props ) => {
     )
 }
 
+export const GetLoading = () => {
+    return (
+        <Spinner animation="border" role="status">
+            <span className="visually-hidden">Loading...</span>
+        </Spinner>
+    )
+}
+
 export default {
     GetButton,
-    GetForm
+    GetForm,
+    GetLoading
 }

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import dataUtil from "./data";
 import normalComp from "./normalComponent";
 
-let CopiedProducts = dataUtil.getProductData();
+let CopiedProducts = dataUtil.getProductData();;
 
 export const GetHeader = ( props ) => {
     const navigate = props.NavigateState;
@@ -24,19 +24,27 @@ export const GetHeader = ( props ) => {
 }
 
 export const GetMainPage = ( props ) => {
-    const [ prodData, setProdData ] = useState( CopiedProducts );
+    let [ dataNo, setDataNo ] = useState( 2 );
+    let [ prodData, setProdData ] = useState( CopiedProducts );
+    let [ showLoad, setShowLoad ] = useState( false );
+    
     return (
         <>
             <div className='main-bg'></div>
             <Container>
+                { showLoad && <normalComp.GetLoading /> }
                 <Row>
-                { prodData.map( ( p, idx ) => <CardList ProductState={ p } ProductIndex={ idx } Navigate={ props.NavigateState } key={ idx }/> ) }
+                    { prodData.map( ( p, idx ) => <CardList ProductState={ p } ProductIndex={ idx } Navigate={ props.NavigateState } key={ idx }/> ) }
                 </Row>
                 <button onClick={ () => {
-                    dataUtil.getMoreData().then( res => {
+                    setShowLoad( true );
+                    dataUtil.getMoreData( dataNo ).then( res => {
+                        if( !res ) return;
+                        setShowLoad( false );
                         CopiedProducts = [ ...prodData ].concat( res );
                         setProdData( CopiedProducts );
-                    } );
+                        setDataNo( dataNo + 1 );
+                    } ).catch( () => setShowLoad( false ) );
                 } }>더 보기</button>
             </Container>
         </>
