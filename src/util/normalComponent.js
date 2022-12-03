@@ -11,26 +11,19 @@ export const GetButton = ( props ) => {
 
 export const GetForm = ( props ) => {
     return (
-        <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" />
-                <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                </Form.Text>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox" label="Check me out" />
-            </Form.Group>
-            {/* <Button variant="primary" type="submit">
-                Submit
-            </Button> */}
-        </Form>
+        <div className='container mt-5'>
+            <Form>
+                <Form.Group className="mb-5" controlId="formUserName">
+                    <Form.Control type="text" placeholder="아이디"/>
+                </Form.Group>
+                <Form.Group className="mb-5" controlId="formPassword">
+                    <Form.Control type="password" placeholder="비밀번호"/>
+                </Form.Group>
+                <GetButton ButtonProp={ "dark" } ButtonName={ "로그인" } onClick={ () => {
+                    console.log(document.getElementById("formUserName").value);
+                } }/>
+            </Form>
+        </div>
     )
 }
 

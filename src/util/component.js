@@ -103,7 +103,9 @@ export const GetLoginPage = () => {
     return(
         <>
             <normalComp.GetForm/>
-            <normalComp.GetButton ButtonProp={ "dark" } ButtonName={ "로그인" }/>
+            {/* <normalComp.GetButton ButtonProp={ "dark" } ButtonName={ "로그인" } onClick={ () => { 
+                console.log
+             } }/> */}
         </>
     )
 }
