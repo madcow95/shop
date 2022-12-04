@@ -17,6 +17,7 @@ export const GetHeader = ( props ) => {
                     <Nav.Link onClick={ () => { navigate( '/' ) } }>홈</Nav.Link>
                     <Nav.Link href="/login">로그인</Nav.Link>
                     <Nav.Link href="/join">회원가입</Nav.Link>
+                    <Nav.Link href="/cart">장바구니</Nav.Link>
                 </Nav>
             </Container>
         </Navbar>
@@ -101,12 +102,7 @@ export const GetLoginPage = () => {
         primary, secondary, success, warning, danger, info, light, dark
     */
     return(
-        <>
-            <normalComp.GetForm/>
-            {/* <normalComp.GetButton ButtonProp={ "dark" } ButtonName={ "로그인" } onClick={ () => { 
-                console.log
-             } }/> */}
-        </>
+        <> <normalComp.GetForm/> </>
     )
 }
 
@@ -121,11 +117,20 @@ export const GetJoinPage = ( props ) => {
     )
 }
 
+export const GetCartPage = ( props ) => {
+    return (
+        <>
+            <h1>TEST</h1>
+        </>
+    )
+}
+
 
 export default {
     GetHeader,
     GetMainPage,
     GetProductDetail,
     GetLoginPage,
-    GetJoinPage
+    GetJoinPage,
+    GetCartPage
 }

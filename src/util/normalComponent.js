@@ -4,7 +4,11 @@ export const GetButton = ( props ) => {
     const BtnProp = props.ButtonProp;
     return (
         <>
-            <Button variant={`${ BtnProp }`}>{ props.ButtonName }</Button>{' '}
+            <Button variant={ `${ BtnProp }` } onClick={ () => {
+                const username = document.getElementById( "formUserName" ).value;
+                const password = document.getElementById( "formPassword" ).value;
+                console.log(`${username}/${password}`);
+            } }>{ props.ButtonName }</Button>{' '}
         </>
     )
 }
@@ -19,9 +23,7 @@ export const GetForm = ( props ) => {
                 <Form.Group className="mb-5" controlId="formPassword">
                     <Form.Control type="password" placeholder="비밀번호"/>
                 </Form.Group>
-                <GetButton ButtonProp={ "dark" } ButtonName={ "로그인" } onClick={ () => {
-                    console.log(document.getElementById("formUserName").value);
-                } }/>
+                <GetButton ButtonProp={ "dark" } ButtonName={ "로그인" } />
             </Form>
         </div>
     )
