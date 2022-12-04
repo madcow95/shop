@@ -4,8 +4,9 @@ import { useParams } from "react-router-dom";
 import { useState } from 'react';
 import dataUtil from "./data";
 import normalComp from "./normalComponent";
+import { useSelector } from 'react-redux';
 
-let CopiedProducts = dataUtil.getProductData();;
+let CopiedProducts = dataUtil.getProductData();
 
 export const GetHeader = ( props ) => {
     const navigate = props.NavigateState;
@@ -25,10 +26,14 @@ export const GetHeader = ( props ) => {
 }
 
 export const GetMainPage = ( props ) => {
+    // state가 여러개면 state.이름 이런식으로도 사용 가능
+    const a = useSelector( state => state );
+    console.log(a);
+    
     let [ dataNo, setDataNo ] = useState( 2 );
     let [ prodData, setProdData ] = useState( CopiedProducts );
     let [ showLoad, setShowLoad ] = useState( false );
-    
+
     return (
         <>
             <div className='main-bg'></div>
