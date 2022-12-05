@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { Container, Nav, Navbar, Row, Col } from 'react-bootstrap';
 import { useParams } from "react-router-dom";
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import dataUtil from "./data";
 import normalComp from "./normalComponent";
-import { useSelector } from 'react-redux';
+import { getMoreProduct } from '../store';
 
 let CopiedProducts = dataUtil.getProductData();
 
@@ -28,8 +29,10 @@ export const GetHeader = ( props ) => {
 export const GetMainPage = ( props ) => {
     // state가 여러개면 state.이름 이런식으로도 사용 가능
     const a = useSelector( state => state );
-    console.log(a);
-    
+    // console.log(a);
+    // store.js로 요청을 보내줌
+    let dispatch = useDispatch();
+    // Redux안에서 state 변경
     let [ dataNo, setDataNo ] = useState( 2 );
     let [ prodData, setProdData ] = useState( CopiedProducts );
     let [ showLoad, setShowLoad ] = useState( false );
