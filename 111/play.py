@@ -45,7 +45,10 @@ def playMacro():
 
         time.sleep(0.5)
         driver.find_elements(By.CLASS_NAME, 'available')[int(selectDay.get()) - 1].click()
-        driver.find_element('id', '01010035').click()
+        deckNumber = "010100"
+        if len(deck.get()) == 1:
+            deckNumber += "0"
+        driver.find_element('id', deckNumber + deck.get()).click()
         driver.find_element(By.CLASS_NAME, "btn_reservation01").click()
 
         # imgDiv = driver.find_element(By.CLASS_NAME, "ex_area")
@@ -59,14 +62,17 @@ user_id, password = StringVar(), StringVar()
 label1 = Label(tk,text='ID').grid(row=0, column=0)
 label2 = Label(tk,text='PW').grid(row=1,column=0)
 label3 = Label(tk,text='일').grid(row=2,column=0)
+label4 = Label(tk,text='데크').grid(row=3,column=0)
 userID = Entry(tk, textvariable=user_id)
 userPWD = Entry(tk, textvariable=password, show="-")
 selectDay = Entry(tk)
+deck = Entry(tk)
 
 userID.grid(row=0,column=1)
 userPWD.grid(row=1,column=1)
 selectDay.grid(row=2,column=1)
+deck.grid(row=3, column=1)
 
-btn1 = Button(tk,text='실행',bg='black',fg='white',command=playMacro).grid(row=3,column=1)
+btn1 = Button(tk,text='실행',bg='black',fg='white',command=playMacro).grid(row=4,column=1)
 
 tk.mainloop()
