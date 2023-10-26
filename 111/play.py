@@ -52,8 +52,7 @@ def playMacro():
         btn2.click()
     if btn3:
         btn3.click()
-    # madcow95
-    # CSdtcow760@
+        
     driver.find_element('id', 'login_id').send_keys(userID.get())
     driver.find_element('id', 'login_passwd').send_keys(userPWD.get())
     driver.find_element(By.XPATH, '//*[@id="header"]/div[2]/fieldset/form/ul[1]/li[3]/a').click()
