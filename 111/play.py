@@ -14,11 +14,15 @@ def validation():
         tkinter.messagebox.showinfo("어허", "비밀번호 써라")
     elif selectDay.get() == "":
         tkinter.messagebox.showinfo("어허", "날짜 써라")
+    elif condition.match(selectDay.get()) == None:
+        tkinter.messagebox.showinfo("어허", "일은 숫자만 입력바람")
+    elif int(selectDay.get()) > 31 or int(selectDay.get()) < 1:
+        tkinter.messagebox.showinfo("어허", "일은 1 ~ 31만 써라")
     elif deck.get() == "":
         tkinter.messagebox.showinfo("어허", "데크 번호 써라")
     elif condition.match(deck.get()) == None:
         tkinter.messagebox.showinfo("어허", "데크 번호 숫자만 입력바람")
-    elif int(deck.get()) > 53 | int(deck.get()) < 1:
+    elif int(deck.get()) > 53 or int(deck.get()) < 1:
         tkinter.messagebox.showinfo("어허", "데크 1 ~ 53까지밖에 없음")
     else:
         result = True
@@ -52,7 +56,7 @@ def playMacro():
         btn2.click()
     if btn3:
         btn3.click()
-        
+
     driver.find_element('id', 'login_id').send_keys(userID.get())
     driver.find_element('id', 'login_passwd').send_keys(userPWD.get())
     driver.find_element(By.XPATH, '//*[@id="header"]/div[2]/fieldset/form/ul[1]/li[3]/a').click()
@@ -71,16 +75,25 @@ def playMacro():
 
     # 예약하기 버튼 클릭 후 jcaptcha를 해결 못함...
     time.sleep(600)
-            
-tk = Tk() 
+
+def checkLen(deck):
+    if len(deck) > 2:
+        return False
+    else:
+        return True
+
+tk = Tk()
+
+checkLen = (tk.register(checkLen), '%P')
+
 label1 = Label(tk,text='ID').grid(row=0, column=0)
 label2 = Label(tk,text='PW').grid(row=1,column=0)
 label3 = Label(tk,text='일').grid(row=2,column=0)
 label4 = Label(tk,text='데크').grid(row=3,column=0)
-userID = Entry(tk, )
+userID = Entry(tk)
 userPWD = Entry(tk, show="-")
-selectDay = Entry(tk)
-deck = Entry(tk)
+selectDay = Entry(tk, validate="key", validatecommand=checkLen)
+deck = Entry(tk, validate="key", validatecommand=checkLen)
 
 userID.grid(row=0,column=1)
 userPWD.grid(row=1,column=1)
