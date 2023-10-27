@@ -10,20 +10,28 @@ def validation():
     condition = re.compile('[0-9]')
     if userID.get() == "":
         tkinter.messagebox.showinfo("어허", "아이디 써라")
+        userID.focus()
     elif userPWD.get() == "":
         tkinter.messagebox.showinfo("어허", "비밀번호 써라")
+        userPWD.focus()
     elif selectDay.get() == "":
         tkinter.messagebox.showinfo("어허", "날짜 써라")
+        selectDay.focus()
     elif condition.match(selectDay.get()) == None:
         tkinter.messagebox.showinfo("어허", "일은 숫자만 입력바람")
+        selectDay.focus()
     elif int(selectDay.get()) > 31 or int(selectDay.get()) < 1:
         tkinter.messagebox.showinfo("어허", "일은 1 ~ 31만 써라")
+        selectDay.focus()
     elif deck.get() == "":
         tkinter.messagebox.showinfo("어허", "데크 번호 써라")
+        deck.focus()
     elif condition.match(deck.get()) == None:
         tkinter.messagebox.showinfo("어허", "데크 번호 숫자만 입력바람")
+        deck.focus()
     elif int(deck.get()) > 53 or int(deck.get()) < 1:
         tkinter.messagebox.showinfo("어허", "데크 1 ~ 53까지밖에 없음")
+        deck.focus()
     else:
         result = True
     return result
