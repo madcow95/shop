@@ -8,6 +8,7 @@ import os
 import pytesseract
 import time
 
+
 options = webdriver.ChromeOptions()
 
 options.add_argument('headless')
